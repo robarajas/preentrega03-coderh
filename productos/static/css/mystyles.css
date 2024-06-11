@@ -7,3 +7,8 @@
   height: 40px;
   color: white;
 } */
+@media (max-width: 150px) {
+  .card {
+      flex-direction: column; /* Cambia la dirección del contenedor a columnas */
+  }
+}
