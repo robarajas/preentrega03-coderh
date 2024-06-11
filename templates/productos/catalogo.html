@@ -5,33 +5,37 @@
 {% endblock title_header %}
 
 {% block title_banner %}
-  <h1 class="display-4 fw-bolder">Catalogo de productos</h1>
-  <p class="lead fw-normal text-white-50 mb-0">Productos de calidad y precio</p>
+  <h1 class="display-4 fw-bolder">Catálogo de productos</h1>
+  <p class="lead fw-normal text-white-50 mb-0">Productos con calidad y a buen precio</p>
 {% endblock title_banner %}
 
 {% block header_container %}
   <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
-    <button type="button" class="btn btn-primary btn-md">Agregar Producto</button>
+    <a role="button" class="btn btn-primary btn-md" href={% url "agregar_producto" %}>Agregar Producto</a>
   </div>
 {% endblock header_container %}
 
 {% block container_layout %}
   <div class="container-lg" style="display: flex;">
     <div class="row">
-      {% for producto in productos %}
-        <div class="col-4" style="margin-top: 5px; margin-bottom: 5px;">
-          <div class="card" style="width: 100%;">
-            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" alt="myimage">
-            <div class="card-body">
-              <h5 class="card-title">{{producto.nombre}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{producto.sku}}</h6>
-              <p class="card-text">{{producto.descripcion}}</p>
-              <p class="card-text">$ {{producto.precio}} MXN</p>
-              <a href="#" class="btn btn-primary">Agregar al carrito</a>
+      {% if productos %}
+        {% for producto in productos %}
+          <div class="col-4" style="margin-top: 5px; margin-bottom: 5px;">
+            <div class="card" style="width: 100%;">
+              <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" alt="myimage">
+              <div class="card-body">
+                <h5 class="card-title">{{producto.nombre}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{producto.sku}}</h6>
+                <p class="card-text">{{producto.descripcion}}</p>
+                <p class="card-text">$ {{producto.precio}} MXN</p>
+                <a href="#" class="btn btn-primary">Agregar al carrito</a>
+              </div>
             </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      {% else %}
+          <p class="fs-1">No hay productos registrados</p>
+      {% endif %}
     </div>
   </div>
 {% endblock container_layout %}

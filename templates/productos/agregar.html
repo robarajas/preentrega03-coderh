@@ -1,0 +1,39 @@
+
+
+{% extends "index.html" %}
+
+{% block title_header %}
+  Agregar Producto
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Agregar Producto</h1>
+  {% comment %} <p class="lead fw-normal text-white-50 mb-0">Productos de calidad y precio</p> {% endcomment %}
+{% endblock title_banner %}
+
+{% block header_container %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
+    <a role="button" class="btn btn-secondary btn-md" href={% url "catalogo" %}>Regresar</a>
+  </div>
+{% endblock header_container %}
+
+{% block container_layout %}
+  <div class="container" style="height: 600px; marging: 5px;">
+    <div class="row" style="margin: 0 auto;">
+      <div class="col-12">
+        <p class="fs-5">Formulario para agregar un auto, completa todos los campos:</p>
+      </div>
+    </div>
+    <div class="row" style="margin: 0 auto;">
+      <div class="col-2">
+        <div>
+          <form method="POST" action={% url "agregar_producto" %}>
+            {% csrf_token %}
+            {{formulario}}
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock container_layout %}
