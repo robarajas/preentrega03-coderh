@@ -11,7 +11,7 @@
             {% endblock title_header %}
         </title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href={% static "assets/favicon.ico" %} />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -49,10 +49,15 @@
             </div>
         </header>
         <!-- CONTAINER_LAYOUT -->
-        <div class="container-fluid" style="margin: 5px; display: flex; felx-wrap: wrap;">
+        {% comment %} HEADER-CONTAINER {% endcomment %}
+        {% block header_container %}{% endblock header_container %}
+        {% comment %} END-HEADER-CONTAINER {% endcomment %}
+        {% comment %} MAIN-CONTAINER {% endcomment %}
+        <div class="container-fluid" >
             {% block container_layout %}
             {% endblock container_layout %}
         </div>
+        {% comment %} MAIN-CONTAINER {% endcomment %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Roberto Barajas 2024 - CODERHOUSE</p></div>

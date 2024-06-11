@@ -9,16 +9,29 @@
   <p class="lead fw-normal text-white-50 mb-0">Productos de calidad y precio</p>
 {% endblock title_banner %}
 
+{% block header_container %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
+    <button type="button" class="btn btn-primary btn-md">Agregar Producto</button>
+  </div>
+{% endblock header_container %}
+
 {% block container_layout %}
-  {% for producto in productos %}
-      <div class="card" style="width: 18rem; margin: 15px; border: 1px solid red;">
-        <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" alt="myimage">
-        <div class="card-body">
-          <h5 class="card-title">{{producto.nombre}}</h5>
-          <p class="card-text">{{producto.descripcion}}</p>
-          <p class="card-text">$ {{producto.precio}} MXN</p>
-          <a href="#" class="btn btn-primary">Agregar al carrito</a>
+  <div class="container-lg" style="display: flex;">
+    <div class="row">
+      {% for producto in productos %}
+        <div class="col-4" style="margin-top: 5px; margin-bottom: 5px;">
+          <div class="card" style="width: 100%;">
+            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" alt="myimage">
+            <div class="card-body">
+              <h5 class="card-title">{{producto.nombre}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{producto.sku}}</h6>
+              <p class="card-text">{{producto.descripcion}}</p>
+              <p class="card-text">$ {{producto.precio}} MXN</p>
+              <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            </div>
+          </div>
         </div>
-      </div>
-  {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
 {% endblock container_layout %}
