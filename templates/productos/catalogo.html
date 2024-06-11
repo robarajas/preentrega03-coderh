@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Productos
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Catalogo de productos</h1>
+  <p class="lead fw-normal text-white-50 mb-0">Productos de calidad y precio</p>
+{% endblock title_banner %}
+
+{% block container_layout %}
+<div class="card" style="width: 18rem; margin: 15px;">
+  <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" alt="myimage">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on.</p>
+    <p class="card-text">$XX.XX</p>
+    <a href="#" class="btn btn-primary">Agregar al carrito</a>
+  </div>
+</div>
+{% endblock container_layout %}
