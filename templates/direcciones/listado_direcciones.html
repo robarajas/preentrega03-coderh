@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Direcciones
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Direcciones de Envío</h1>
+  <p class="lead fw-normal text-white-50 mb-0">Listado de todas las direcciones de envío</p>
+{% endblock title_banner %}
+
+{% block header_container %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
+    <a role="button" class="btn btn-primary btn-md" href={% url "agregar_direccion" %}>Agregar Dirección</a>
+  </div>
+{% endblock header_container %}
+
+{% block container_layout %}
+  <div class="container-lg" style="display: flex;">
+    <div class="row" style="width: 100%;">
+      {% if direcciones %}
+        {% for direccion in direcciones %}
+          <div class="col-12" style="margin-top: 5px; margin-bottom: 5px;">
+            <div class="card w-100" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{direccion.nombre}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{direccion.ciudad}}</h6>
+                <p class="card-text">{{direccion.direccion}}. Codigo postal: {{direccion.codigo_postal}}</p>
+                {% comment %} <a href="#" class="card-link">Ver</a>
+                <a href="#" class="card-link">Editar</a>
+                <a href="#" class="card-link">Eliminar</a> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+          <p class="fs-1">No hay direcciones registradas</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock container_layout %}
