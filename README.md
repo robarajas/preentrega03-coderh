@@ -1,8 +1,6 @@
 # PRE-ENTREGA #03-CODERHOUSE - ECOMMERCE
 Pre-entrega #03 ecommerce - Django, modelos, templates y base de datos
 
-## Estructura del proyecto
-
 ## Temática del proyecto
 Este proyecto simula una tienda en linea donde encontrarás listado de productos y direcciones que se pueden registrar desde el sitio o módulo Admin.
 
