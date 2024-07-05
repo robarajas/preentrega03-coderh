@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Inicio Sesión
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Inicio de sesión</h1>
+  <p class="lead fw-normal text-white-50 mb-0">Ingresa con tu usuario para vivir la experiencia</p>
+{% endblock title_banner %}
+
+{% block header_container %}
+
+{% endblock header_container %}
+
+{% block container_layout %}
+  <div class="container-lg" style="margin-top: 25px; margin-bottom: 5px; height: 350px;">
+    <div class="row" style="width: 100%; margin: 0 auto;">
+      <div class="col-12" style="text-align: center;">
+        <form method="POST" action={% url "login" %}>
+          {% csrf_token %}
+          {{formulario}}
+          <input type="submit" value="Iniciar">
+        </form>
+      </div>
+    </div>
+    <div class="row" style="width: 100%; margin: 0 auto; margin-top: 10px">
+      <div class="col-12" style="text-align: center;">
+        <a href={% url "registro" %}><b>¿Aún no tienes usuario? Regístrate Aquí</b></a>
+      </div>
+    </div>
+  </div>
+{% endblock container_layout %}

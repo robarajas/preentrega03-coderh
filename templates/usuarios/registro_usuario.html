@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Registro
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Registro</h1>
+  <p class="lead fw-normal text-white-50 mb-0">Formulario de registro de nuevo usuario</p>
+{% endblock title_banner %}
+
+{% block header_container %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
+    <a role="button" class="btn btn-secondary btn-md" href={% url "login" %}>Regresar</a>
+  </div>
+{% endblock header_container %}
+
+{% block container_layout %}
+  <div class="container-lg" style="margin-top: 25px; margin-bottom: 5px; height: 350px;">
+    <div class="row" style="width: 100%; margin: 0 auto;">
+      <div class="col-12" style="text-align: center;">
+        <form method="POST" action={% url "registro" %}>
+          {% csrf_token %}
+          {{formulario}}
+          <br>
+          <input type="submit" value="Registrar">
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock container_layout %}

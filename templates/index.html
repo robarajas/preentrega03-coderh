@@ -28,15 +28,44 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href={% url "main" %}>Inicio</a></li>
                         <li class="nav-item"><a class="nav-link active" href={% url "catalogo" %}>Productos</a></li>
-                        <li class="nav-item"><a class="nav-link active" href={% url "listado_direcciones" %}>Direcciones</a></li>
+                        {% if request.user.is_authenticated %}
+                          <li class="nav-item"><a class="nav-link active" href={% url "listado_direcciones" %}>Direcciones</a></li>
+                        {% endif %}
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
+                      <form class="d-flex">
+                          <button class="btn btn-outline-dark" type="submit">
+                              <i class="bi bi-cart me-1"></i>
+                              Cart
+                              <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                          </button>
+                      </form>
+                      {% if request.user.is_authenticated %}
+                        <form method="POST" class="d-flex" style="margin-left: 5px" action={% url "logout" %}>
+                          {% csrf_token %}
+                          <button class="btn btn-outline-dark" type="submit">
+                            Cerrar Sesión
+                            <i class="bi bi-box-arrow-in-left me-1"></i>
+                          </button>
+                        </form>
+                        <a href="#">
+                          {% if request.user.datosextra.avatar %}
+                              <img src={{request.user.avatar}} alt="Avatar">
+                          {% else %}
+                          <h5 style="margin-left: 5px;">
+                            <span class="badge bg-secondary">
+                              <b>{{request.user.username}}</b>
+                            </span>
+                          </h5>
+                          {% endif %}
+                        </a>
+                      {% else %}
+                        <form class="d-flex" style="margin-left: 5px" action={% url "login" %}>
+                          <button class="btn btn-outline-dark" type="submit">
+                              Iniciar Sesión
+                              <i class="bi bi-box-arrow-in-right me-1"></i>
+                          </button>
+                        </form>
+                      {% endif %}
                 </div>
             </div>
         </nav>
