@@ -10,9 +10,22 @@
 {% endblock title_banner %}
 
 {% block header_container %}
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
-    <a role="button" class="btn btn-primary btn-md" href={% url "agregar_producto" %}>Agregar Producto</a>
-  </div>
+  {% if isAuthenticated %}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px;">
+      <h5>Buscar Producto</h5>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin: 5px;">
+      <form method="GET" action={% url "catalogo" %} style="width: 50%; display: flex">
+        {{formularioBusqueda}}
+        <button class="btn btn-primary btn-sm" type="submit" style="margin-left: 10px; width: 100px">
+          Buscar
+        </button>
+      </form>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
+      <a role="button" class="btn btn-primary btn-md" href={% url "agregar_producto" %}>Agregar Producto</a>
+    </div>
+  {% endif %}
 {% endblock header_container %}
 
 {% block container_layout %}
@@ -22,9 +35,15 @@
         {% for producto in productos %}
           <div class="col-4" style="margin-top: 5px; margin-bottom: 5px;">
             <div class="card" style="width: 100%;">
-              <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" alt="myimage">
+              <a href={% url "detalles_producto" producto.id %}>
+                {% if producto.imagen %}
+                  <img src={{producto.imagen.url}} class="img-thumbnail" alt="Avatar" height="20px">
+                {% else %}
+                  <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="img-thumbnail" alt="Avatar">
+                {% endif %}
+              </a>
               <div class="card-body">
-                <h5 class="card-title">{{producto.nombre}}</h5>
+                <a href={% url "detalles_producto" producto.id %}><h5 class="card-title">{{producto.nombre}}</h5></a>
                 <h6 class="card-subtitle mb-2 text-muted">{{producto.sku}}</h6>
                 <p class="card-text">{{producto.descripcion}}</p>
                 <p class="card-text">$ {{producto.precio}} MXN</p>

@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Detalles
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Detalles del producto</h1>
+  <p class="lead fw-normal text-white-50 mb-0">SKU: {{producto.sku}}</p>
+{% endblock title_banner %}
+
+{% block header_container %}
+  {% if request.user.is_authenticated %}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top: 5px;">
+      <a role="button" class="btn btn-warning btn-md" href={% url "editar_producto" producto.id %}>Editar Producto</a>
+      <a role="button" class="btn btn-danger btn-md" href={% url "eliminar_producto" producto.id %}>Eliminar Producto</a>
+    </div>
+  {% endif %}
+{% endblock header_container %}
+
+{% block container_layout %}
+<div class="container-lg" style="margin-top: 5px; margin-bottom: 5px; height: 650px;">
+  <div class="row" style="width: 100%; margin: 0 auto;">
+    <div class="col-12">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px; height: 250px">
+        {% if producto.imagen %}
+          <img src={{producto.imagen.url}} class="img-thumbnail" alt="Avatar">
+        {% else %}
+          <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="img-thumbnail" alt="Avatar">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="row" style="width: 100%; margin: 0 auto;">
+    <div class="col-12">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px;">
+        <h3>{{producto.nombre}}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="width: 100%; margin: 0 auto;">
+    <div class="col-12">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px;">
+        <ul>
+          <li><b>Descripción:</b> {{producto.descripcion}}</li>
+          <li><b>Precio:</b> {{producto.precio}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="width: 100%; margin: 0 auto;">
+    <div class="col-12" style="text-align: center;">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px;">
+        <a role="button" class="btn btn-secondary btn-md" href={% url "catalogo" %}>Regresar</a>
+      </div>
+    </div>
+  </div>
+{% endblock container_layout %}

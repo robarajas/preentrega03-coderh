@@ -1,38 +1,58 @@
+from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from productos.models import Producto
-from productos.forms import CrearProducto
+from django.views.generic import DetailView
+from django.views.generic.edit import DeleteView
+from productos.forms import CrearProducto, BuscarProducto, EditarProductoFormulario
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def catalogo(request):
-    products_list = Producto.objects.all()
-    return render(request, 'productos/catalogo.html', {'productos': products_list })
+    isAuthenticated = request.user.is_authenticated
+    username = None
+    formularioBusqueda = BuscarProducto(request.GET)
+    if formularioBusqueda.is_valid():
+        nombre = formularioBusqueda.cleaned_data['nombre']
+        products_list = Producto.objects.filter(nombre__icontains=nombre)
+    return render(request, 'productos/catalogo.html', {'productos': products_list, 'isAuthenticated': isAuthenticated, 'username': username, 'formularioBusqueda': formularioBusqueda})
 
+@login_required
 def agregar_producto(request):
-    # cuando se envían parametros con formularios, se reciben en el request
-    # print(request.GET, 'REQUEST') # Así se reciben los parámetros querystring como diccionarios
-    # Si vamos a crear un producto con los valores recibidos, asegurarnos que sea con POST
-    
-    # Version donde se usa formulario de HTML
-    # if request.method == 'POST':
-    #     sku = request.POST.get('sku')
-    #     nombre = request.POST.get('nombre')
-    #     precio = request.POST.get('precio')
-    #     descripcion = request.POST.get('descripcion')
-    #     # Crear un nuevo producto
-    #     producto = Producto(sku=sku, nombre=nombre, precio=precio, descripcion=descripcion)
-    #     producto.save()
-    #     return render(request, 'productos/catalogo.html', {'agregado': True})
-    # return render(request, 'productos/agregar.html')
-    
-    # Versión donde se usa formulario de Django
-    # Se inicializa el formulario antes del post para mostrar valores en inputs cuando falla
     formulario = CrearProducto()
-    
     if request.method == 'POST':
-        formulario = CrearProducto(request.POST)
+        formulario = CrearProducto(request.POST, request.FILES)
         if formulario.is_valid():
             datos = formulario.cleaned_data
-            producto = Producto(sku=datos['sku'], nombre=datos['nombre'], precio=datos['precio'], descripcion=datos['descripcion'])
+            producto = Producto(sku=datos['sku'], nombre=datos['nombre'], precio=datos['precio'], descripcion=datos['descripcion'], imagen=datos['imagen'])
             producto.save()
             return redirect('catalogo')
     return render(request, 'productos/agregar.html', {'formulario': formulario})
+  
+class VerProducto(DetailView):
+  model = Producto
+  template_name = 'productos/detalles_producto.html'
+  
+class EliminarProducto(LoginRequiredMixin, DeleteView):
+  model = Producto
+  template_name = 'productos/eliminar_producto.html'
+  success_url = reverse_lazy('catalogo')
+
+@login_required
+def editarProducto(request, id):
+  # initialImage = 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg'
+  producto = Producto.objects.get(id=id)
+  formulario = EditarProductoFormulario(initial=producto)
+  if request.method == 'POST':
+    formulario = EditarProductoFormulario(request.POST, request.FILES)
+    if formulario.is_valid():
+      params = formulario.cleaned_data
+      producto.sku = params['sku']
+      producto.nombre = params['nombre']
+      producto.precio = params['precio']
+      producto.descripcion = params['descripcion']
+      producto.imagen = params['imagen']
+      producto.save()
+      return redirect('editar_producto')
+  return render(request, 'productos/editar_producto.html', {'formulario': formulario})
+  

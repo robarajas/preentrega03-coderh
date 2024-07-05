@@ -3,12 +3,11 @@
 {% extends "index.html" %}
 
 {% block title_header %}
-  Agregar Producto
+  Eliminar
 {% endblock title_header %}
 
 {% block title_banner %}
-  <h1 class="display-4 fw-bolder">Agregar Producto</h1>
-  {% comment %} <p class="lead fw-normal text-white-50 mb-0">Productos de calidad y precio</p> {% endcomment %}
+  <h1 class="display-4 fw-bolder">Eliminar Producto</h1>
 {% endblock title_banner %}
 
 {% block header_container %}
@@ -21,16 +20,16 @@
   <div class="container" style="height: 600px; marging: 5px;">
     <div class="row" style="margin: 0 auto;">
       <div class="col-12">
-        <p class="fs-5">Formulario para agregar un producto, completa todos los campos:</p>
+        <p class="fs-3">¿Estas seguro que deseas eliminar el producto?</p>
       </div>
     </div>
     <div class="row" style="margin: 0 auto;">
       <div class="col-2">
         <div>
-          <form method="POST" action={% url "agregar_producto" %} enctype="multipart/form-data">
+          <form method="POST" action={% url "eliminar_producto" producto.id %}>
             {% csrf_token %}
             {{formulario}}
-            <button type="submit" class="btn btn-primary" style="margin-top: 10px">Guardar</button>
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px">Confirmar Borrado</button>
           </form>
         </div>
       </div>
