@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Perfil
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Editar Perfil</h1>
+  {% comment %} <p class="lead fw-normal text-white-50 mb-0"></p> {% endcomment %}
+{% endblock title_banner %}
+
+{% block container_layout %}
+  <div class="container-lg" style="margin-top: 25px; margin-bottom: 5px; height: 550px;">
+    <div class="row" style="width: 100%; margin: 0 auto;">
+      <div class="col-12">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px; margin-bottom: 25px; height: 150px">
+          {% if avatar %}
+            <img src={{avatar.url}} class="img-thumbnail" alt="Avatar">
+          {% else %}
+            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="img-thumbnail" alt="Avatar">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="row" style="width: 100%; margin: 0 auto;">
+      <div class="col-12" style="text-align: center;">
+        <form method="POST" action={% url "editar_perfil" %} enctype="multipart/form-data">
+          {% csrf_token %}
+          {{formulario}}
+          {% comment %} <input type="submit" value="Iniciar"> {% endcomment %}
+          <button class="btn btn-primary btn-sm" type="submit" style="margin-top: 20px; width: 100px">
+            Guardar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock container_layout %}

@@ -47,9 +47,9 @@
                             <i class="bi bi-box-arrow-in-left me-1"></i>
                           </button>
                         </form>
-                        <a href="#">
+                        <a href={% url "editar_perfil" %}>
                           {% if request.user.datosextra.avatar %}
-                              <img src={{request.user.avatar}} alt="Avatar">
+                              <img src={{request.user.datosextra.avatar.url}} alt="Avatar" height="40px">
                           {% else %}
                           <h5 style="margin-left: 5px;">
                             <span class="badge bg-secondary">

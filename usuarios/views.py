@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as djangoLogin
-from usuarios.forms import FormularioRegistro
+from usuarios.forms import FormularioRegistro, EditarPerfilForm
+from django.contrib.auth.decorators import login_required
 from usuarios.models import DatosExtra
 
 # Create your views here.
@@ -37,4 +38,24 @@ def registro(request):
       DatosExtra.objects.create(user=user, genero=genero, rol_usuario=rol_usuario, fecha_nacimiento=fecha_nacimiento)
       return redirect('login')
   return render(request, 'usuarios/registro_usuario.html', { 'formulario': formulario })
+
+@login_required
+def editarPerfil(request):
+  avatar = request.user.datosextra.avatar
+  datosextra = DatosExtra.objects.get(user=request.user)
+  context = { 'avatar': avatar, 'genero': datosextra.genero, 'rol_usuario': datosextra.rol_usuario, 'fecha_nacimiento': datosextra.fecha_nacimiento }
+  formulario = EditarPerfilForm(initial=context, instance=request.user)
+  if request.method == 'POST':
+    formulario = EditarPerfilForm(request.POST, request.FILES, instance=request.user)
+    if formulario.is_valid():
+      hasNewAvatar = formulario.cleaned_data['avatar']
+      if hasNewAvatar != None:
+        datosextra.avatar = formulario.cleaned_data['avatar']
+      datosextra.rol_usuario = formulario.cleaned_data['rol_usuario']
+      datosextra.genero = formulario.cleaned_data['genero']
+      datosextra.fecha_nacimiento = formulario.cleaned_data['fecha_nacimiento']
+      datosextra.save()
+      formulario.save()
+      return redirect('editar_perfil')
+  return render(request, 'usuarios/editar_perfil.html', {'formulario': formulario, 'avatar': datosextra.avatar})
 
