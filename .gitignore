@@ -286,4 +286,8 @@ pyrightconfig.json
 .history
 .ionide
 
+# Omitir carpeta que guarda imágenes de productos
+media/products/*
+img-products/*
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,django
