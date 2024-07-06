@@ -1,12 +1,14 @@
-# PRE-ENTREGA #03-CODERHOUSE - ECOMMERCE
-Pre-entrega #03 ecommerce - Django, modelos, templates y base de datos
+# Proyecto Final Curso Coderhouse - ECOMMERCE
+Este proyecto es un MINI ECOMMERCE con manejo de usuarios, direcciones, productos y un chat entre usuarios. Se continuo tomando como base la **Pre-entrega #03 ecommerce - Django, modelos, templates y base de datos**
 
 ## Temática del proyecto
-Este proyecto simula una tienda en linea donde encontrarás listado de productos y direcciones que se pueden registrar desde el sitio o módulo Admin.
+Este proyecto simula una tienda en linea donde encontrarás listado de productos y cuando eres un usuario registrado tienes acceso a las direcciones de envío y Chat entre usuarios; así como la administración de los diferentes apartados.
 
 ### Aplicaciones
 * **productos** - Aqui se administran lo relacionado a los productos de la tienda en línea.
 * **direcciones** - Aquí se administran las direcciones en envío que el usuario dará de alta.
+* **usuarios** - Aquí se administran las cuentas de usuario registrados así como su actualización de datos
+* **mensajeria** - Chat entre usuarios registrados
 
 ### Templates
 Se crea una carpeta en raíz llamada **templates** en la cual, se crearon subcarpetas que hacen referencias a las aplicaciones del proyecto, a las vistas iniciales y al archivo base (**index.html**)
@@ -14,18 +16,18 @@ Se crea una carpeta en raíz llamada **templates** en la cual, se crearon subcar
 ### Recursos
 Se descargó una plantilla inicial desde el sitio **Start Bootstarp** (https://startbootstrap.com/template/shop-homepage#google_vignette) y los recursos descargados se pusieron en una carpeta en raíz llamada **static** (el archivo **index.html** se puso en carpeta **templates** para mejor entendimiento y organización).
 
-## ¿Cómo usarlo?
-Sigue los siguientes pasos para llevar a cabo las acciones permitidas dentro del sitio
+## ¿Cómo usarlo el sitio?
+Te dejaré por aqui un **video** colgado en una URL de acceso público donde especifica las funcionalidades del sitio, así como algunas restricciones.
 
-### Productos
-* **Ver productos** - En la parte superior se encuantra el NAV VAR en donde verás la opción de productos,
-esta opción te redirecciona a la vista en donde se muestran los artículos registrados en base de datos. Si no hay ningún registro, solo se mostrará un mensaje avisando.
-* **Registrar Producto** - Dentro del listado de productos, verás un botón que dice "Agregar producto", este botón te redirecciona al formulario, en donde tendrás que completar los campos solicitados, presionar el botón "Guardar" y se registrará el Producto. Al registrarlo te manda al listado de productos.
+* **VIDEO**: "AQUI PONER LA URL CUANDO SE TENGA ARRIBA EN LA NUBE"
 
-### Direcciones
-### Productos
-* **Ver Direcciones** - En la parte superior se encuantra el NAV VAR en donde verás la opción de "sirecciones",esta opción te redirecciona a la vista en donde se muestran las direcciones registradas en base de datos. Si no hay ningún registro, solo se mostrará un mensaje avisando.
-* **Registrar Dirección** - Dentro del listado de direcciones, verás un botón que dice "Agregar dirección", este botón te redirecciona al formulario, en donde tendrás que completar los campos solicitados, presionar el botón "Guardar" y se registrará la nueva Dirección. Al registrarlo te manda al listado de direcciones.
+## ¿Cómo correr el sitio en mi computadora? (Detalles técnicos)
+* Necesitas Clonar el proyecto usando la URL del repositorio en GITHUB. Ejecuta el comando "git clone https://github.com/robarajas/preentrega03-coderh.git"
+* Posicionate dentro del proyecto y crea tu entorno virtual. Ejecuta el comando "**python -m venv venv**" 
+* Activa tu entorno Virtual. Ejecuta el comando ""**. venv/Scripts/activate**"
+* Instala las dependencias necesarias del proyecto. Ejecuta el comando: "**pip install -r requirements.txt**"
+* Una vez instaladas, solo corre la aplicación. Ejecuta el comando: "python manage.py runserver**
+* Listo! Accede a la URL que te aparecerá en consola.
 
 ## NOTAS
 * Se trabajó con un entorno virtual, el archivo **requirements.txt.** contiene el listado de dependencias utilizadas en el proyecto.
