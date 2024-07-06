@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Direcciones
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Eliminar Dirección</h1>
+  {% comment %} <p class="lead fw-normal text-white-50 mb-0"></p> {% endcomment %}
+{% endblock title_banner %}
+
+{% block container_layout %}
+  <div class="container-lg" style="margin-top: 25px; margin-bottom: 5px; height: 550px;">
+    <div class="row" style="width: 100%; margin: 0 auto;">
+      <div class="col-12" style="text-align: center;">
+        <form method="POST" action={% url "eliminar_direccion" direccion.id %}>
+          {% csrf_token %}
+          <p>¿Estas seguro de eliminar la dirección <b>{{direccion.nombre}}</b>?</p>
+          <button class="btn btn-primary btn-sm" type="submit" style="margin-top: 20px; width: 100px">
+            Eliminar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock container_layout %}

@@ -29,3 +29,8 @@ class EditarDireccion(LoginRequiredMixin, UpdateView):
   fields = ['nombre', 'direccion', 'ciudad', 'codigo_postal']
   template_name = 'direcciones/editar_direccion.html'
   success_url = reverse_lazy('listado_direcciones')
+  
+class EliminarDireccion(LoginRequiredMixin, DeleteView):
+  model = Direccion
+  template_name = 'direcciones/eliminar_direccion.html'
+  success_url = reverse_lazy('listado_direcciones')

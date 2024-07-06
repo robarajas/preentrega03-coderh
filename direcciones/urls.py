@@ -5,4 +5,5 @@ urlpatterns = [
   path('', views.listado_direcciones, name='listado_direcciones'),
   path('agregar/', views.agregar_direccion, name='agregar_direccion'),
   path('editar/<int:pk>/', views.EditarDireccion.as_view(), name='editar_direccion'),
+  path('eliminar/<int:pk>/', views.EliminarDireccion.as_view(), name='eliminar_direccion'),
 ]
