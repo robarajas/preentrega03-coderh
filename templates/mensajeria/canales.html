@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Canales
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Mis Canales</h1>
+  <p class="lead fw-normal text-white-50 mb-0">Canales de mensajería para comunicarte con los demás usuarios</p>
+{% endblock title_banner %}
+
+{% block header_container %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px; margin-right: 15px">
+    <a role="button" class="btn btn-primary btn-md" href={% url "crear_canal" %}>Crear Canal</a>
+  </div>
+{% endblock header_container %}
+
+{% block container_layout %}
+<div class="container-lg" style="display: flex;">
+  <div class="row" style="width: 100%;">
+    {% if canales %}
+      {% for canal in canales %}
+        <div class="col-12" style="margin-top: 5px; margin-bottom: 35px;">
+          <div class="card w-100" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{canal.asunto}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{canal.fecha_creacion}}</h6>
+              <a href={% url "ver_canal" canal.id %} class="card-link">Entrar a la conversación</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px; height: 350px">
+      <p class="fs-1">No hay canales creados</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock container_layout %}

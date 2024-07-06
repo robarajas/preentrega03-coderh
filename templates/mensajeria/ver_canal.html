@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Canal
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Mensajes de un canal</h1>
+  {% comment %} <p class="lead fw-normal text-white-50 mb-0">Crea un canal y empieza a enviar mensajes a un usuario</p> {% endcomment %}
+{% endblock title_banner %}
+
+{% block header_container %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
+    <a role="button" class="btn btn-secondary btn-md" href={% url "canales" %}>Regresar</a>
+  </div>
+{% endblock header_container %}
+
+{% block container_layout %}
+  <div class="container" style="height: 600px; marging: 5px;">
+    <div class="row">
+      <div class="col-7" style="margin: 5px; border: 1px solid orange; height: 550px">
+        {% if mensajes %}
+          {% for mensaje in mensajes %}
+            {% comment %} {{mensaje.usuario_emisor}}
+            {{userlogged}} {% endcomment %}
+            <div class="col-12" style="margin-top: 5px; margin-bottom: 35px;">
+              <div class="card w-100" style="width: 18rem;">
+                {% if mensaje.usuario_emisor == userlogged %}
+                  <div class="card-body" style="text-align: right; background-color: #C1F5C4; border: 1px solid green; border-radius: 10px;">
+                    <h5 class="card-title">{{mensaje.usuario_emisor}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{mensaje.mensaje}}</h6>
+                  </div>
+                {% else %}
+                  <div class="card-body" style="background-color: #E3E5E3; border-radius: 10px;">
+                    <h5 class="card-title">{{mensaje.usuario_emisor}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{mensaje.mensaje}}</h6>
+                  </div>
+                {% endif %}    
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px; height: 350px">
+          <p class="fs-1">No hay canales creados</p>
+        </div>
+        {% endif %}
+      </div>
+      <div class="col-4" style="margin: 5px; border: 1px solid green; height: 550px;">
+        <form method="POST" action={% url "ver_canal" canal.id %}>
+          {% csrf_token %}
+          {{formulario}}
+          <button type="submit" class="btn btn-primary" style="margin-top: 10px">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock container_layout %}

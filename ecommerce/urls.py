@@ -23,9 +23,11 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name='main'),
+    path('aboutme/', views.aboutme, name='about_me'),
     path('productos/', include('productos.urls')),
     path('direcciones/', include('direcciones.urls')),
-    path('usuarios/', include('usuarios.urls'))
+    path('usuarios/', include('usuarios.urls')),
+    path('mensajes/', include('mensajeria.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Se agrega la configuración de media

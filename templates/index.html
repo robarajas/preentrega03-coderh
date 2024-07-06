@@ -30,6 +30,7 @@
                         <li class="nav-item"><a class="nav-link active" href={% url "catalogo" %}>Productos</a></li>
                         {% if request.user.is_authenticated %}
                           <li class="nav-item"><a class="nav-link active" href={% url "listado_direcciones" %}>Direcciones</a></li>
+                          <li class="nav-item"><a class="nav-link active" href={% url "canales" %}>Mensajería</a></li>
                         {% endif %}
                     </ul>
                       <form class="d-flex">
@@ -91,6 +92,7 @@
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Roberto Barajas 2024 - CODERHOUSE</p></div>
+            {% comment %} <div class="container"><p class="m-0 text-center text-white">¿Quieres saber acerca del Desarrollador? Da clic <a href={% url "about_me" %}>AQUÍ</a></p></div> {% endcomment %}
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

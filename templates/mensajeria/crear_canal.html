@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+
+{% block title_header %}
+  Creación
+{% endblock title_header %}
+
+{% block title_banner %}
+  <h1 class="display-4 fw-bolder">Crear Canal</h1>
+  <p class="lead fw-normal text-white-50 mb-0">Crea un canal y empieza a enviar mensajes a un usuario</p>
+{% endblock title_banner %}
+
+{% block header_container %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
+    <a role="button" class="btn btn-secondary btn-md" href={% url "canales" %}>Regresar</a>
+  </div>
+{% endblock header_container %}
+
+{% block container_layout %}
+  <div class="container" style="height: 600px; marging: 5px;">
+    <div class="row" style="margin: 0 auto;">
+      <div class="col-12">
+        <p class="fs-5">Formulario para crear un canal, escribe el asunto, elige el usuario al que quieres enviarle mensaje y escribelo: </p>
+      </div>
+    </div>
+    <div class="row" style="margin: 0 auto;">
+      <div class="col-2">
+        <div>
+          <form method="POST" action={% url "crear_canal" %}>
+            {% csrf_token %}
+            {{formulario}}
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock container_layout %}
