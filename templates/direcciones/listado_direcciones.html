@@ -26,9 +26,9 @@
                 <h5 class="card-title">{{direccion.nombre}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{direccion.ciudad}}</h6>
                 <p class="card-text">{{direccion.direccion}}. Codigo postal: {{direccion.codigo_postal}}</p>
-                {% comment %} <a href="#" class="card-link">Ver</a>
-                <a href="#" class="card-link">Editar</a>
-                <a href="#" class="card-link">Eliminar</a> {% endcomment %}
+                {% comment %} <a href="#" class="card-link">Ver</a>{% endcomment %}
+                <a href={% url "editar_direccion" direccion.id %} class="card-link">Editar</a>
+                {% comment %}<a href="#" class="card-link">Eliminar</a> {% endcomment %}
               </div>
             </div>
           </div>
