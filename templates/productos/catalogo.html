@@ -10,7 +10,6 @@
 {% endblock title_banner %}
 
 {% block header_container %}
-  {% if isAuthenticated %}
     <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px;">
       <h5>Buscar Producto</h5>
     </div>
@@ -22,6 +21,7 @@
         </button>
       </form>
     </div>
+  {% if isAuthenticated %}
     <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 5px;">
       <a role="button" class="btn btn-primary btn-md" href={% url "agregar_producto" %}>Agregar Producto</a>
     </div>
