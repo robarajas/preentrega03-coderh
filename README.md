@@ -19,7 +19,7 @@ Se descargó una plantilla inicial desde el sitio **Start Bootstarp** (https://s
 ## ¿Cómo usarlo el sitio?
 Te dejaré por aqui un **video** colgado en una URL de acceso público donde especifica las funcionalidades del sitio, así como algunas restricciones.
 
-* **VIDEO**: "AQUI PONER LA URL CUANDO SE TENGA ARRIBA EN LA NUBE"
+* **VIDEO**: "[Da clic AQUI para ir al video en la NUBE](https://drive.google.com/file/d/1FD4-WxJnsM2Ew12l_Ay_Tdlq92RQ_7d1/view?usp=drive_link)"
 
 ## ¿Cómo correr el sitio en mi computadora? (Detalles técnicos)
 * Necesitas Clonar el proyecto usando la URL del repositorio en GITHUB. Ejecuta el comando "git clone https://github.com/robarajas/preentrega03-coderh.git"
