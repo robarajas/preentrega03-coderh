@@ -18,15 +18,28 @@
 
 {% block container_layout %}
   <div class="container" style="height: 600px; marging: 5px;">
-    <div class="row" style="margin: 0 auto;">
+    <div class="row">
       <div class="col-12">
-        <p class="fs-5">Formulario para editar un producto:</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px;">
+          <p class="fs-5">Formulario para editar un producto:</p>
+        </divv>
       </div>
     </div>
-    <div class="row" style="margin: 0 auto;">
-      <div class="col-2">
-        <div>
-          <form method="POST" action={% url "editar_producto" producto.id %} enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px; margin-bottom: 10px; height: 130px;">
+          {% if producto.imagen %}
+            <img style="height: 100%" src={{producto.imagen.url}} class="img-thumbnail" alt="Producto" height="50px">
+          {% else %}
+            <img style="height: 100%" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="img-thumbnail" alt="Producto" height="50px">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 5px; margin-bottom: 25px;">
+          <form style="width: 30%;" method="POST" action={% url "editar_producto" producto.id %} enctype="multipart/form-data">
             {% csrf_token %}
             {{formulario}}
             <button type="submit" class="btn btn-primary" style="margin-top: 10px">Editar</button>

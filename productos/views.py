@@ -40,19 +40,20 @@ class EliminarProducto(LoginRequiredMixin, DeleteView):
 
 @login_required
 def editarProducto(request, id):
-  # initialImage = 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg'
   producto = Producto.objects.get(id=id)
-  formulario = EditarProductoFormulario(initial=producto)
+  formulario = EditarProductoFormulario(initial={'sku': producto.sku, 'nombre': producto.nombre, 'precio': producto.precio, 'descripcion': producto.descripcion, 'imagen': producto.imagen})
   if request.method == 'POST':
     formulario = EditarProductoFormulario(request.POST, request.FILES)
     if formulario.is_valid():
       params = formulario.cleaned_data
+      hasNewImage = formulario.cleaned_data['imagen']
+      if hasNewImage != None:
+        producto.imagen = params['imagen']
       producto.sku = params['sku']
       producto.nombre = params['nombre']
       producto.precio = params['precio']
       producto.descripcion = params['descripcion']
-      producto.imagen = params['imagen']
       producto.save()
-      return redirect('editar_producto')
-  return render(request, 'productos/editar_producto.html', {'formulario': formulario})
+      return redirect('catalogo')
+  return render(request, 'productos/editar_producto.html', {'formulario': formulario, 'producto': producto})
   
